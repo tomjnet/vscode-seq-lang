@@ -1,0 +1,410 @@
+{
+  "name": "vscode-seq-lang",
+  "displayName": "Seq Language for VS Code",
+  "description": "Syntax, diagnostics, and build inspection for the Seq programming language.",
+  "version": "0.1.0",
+  "publisher": "tomjnet",
+  "license": "MIT",
+  "icon": "images/icon.png",
+  "galleryBanner": {
+    "color": "#1e1e1e",
+    "theme": "dark"
+  },
+  "homepage": "https://tomjnet.github.io/seq-lang/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tomjnet/vscode-seq-lang"
+  },
+  "bugs": {
+    "url": "https://github.com/tomjnet/vscode-seq-lang/issues"
+  },
+  "keywords": [
+    "seq",
+    "seqc",
+    "seq-lang",
+    "llm",
+    "compiler",
+    "workflow",
+    "codelens"
+  ],
+  "categories": [
+    "Programming Languages",
+    "Linters",
+    "Snippets"
+  ],
+  "engines": {
+    "vscode": "^1.90.0"
+  },
+  "main": "./dist/extension.js",
+  "extensionKind": [
+    "workspace"
+  ],
+  "capabilities": {
+    "untrustedWorkspaces": {
+      "supported": "limited",
+      "description": "Running seqc is disabled in untrusted workspaces. Highlighting, snippets, and outline stay available.",
+      "restrictedConfigurations": [
+        "seq.seqcPath",
+        "seq.useWsl",
+        "seq.run.extraArgs"
+      ]
+    },
+    "virtualWorkspaces": {
+      "supported": "limited",
+      "description": "Only highlighting, snippets, and outline are available without a local file system."
+    }
+  },
+  "contributes": {
+    "languages": [
+      {
+        "id": "seq",
+        "aliases": [
+          "Seq",
+          "seq"
+        ],
+        "extensions": [
+          ".seq"
+        ],
+        "configuration": "./language-configuration.json",
+        "icon": {
+          "light": "./images/seq-file.svg",
+          "dark": "./images/seq-file.svg"
+        }
+      }
+    ],
+    "grammars": [
+      {
+        "language": "seq",
+        "scopeName": "source.seq",
+        "path": "./syntaxes/seq.tmLanguage.json"
+      }
+    ],
+    "snippets": [
+      {
+        "language": "seq",
+        "path": "./snippets/seq.json"
+      }
+    ],
+    "configurationDefaults": {
+      "[seq]": {
+        "editor.insertSpaces": true,
+        "editor.tabSize": 4,
+        "editor.detectIndentation": false
+      }
+    },
+    "commands": [
+      {
+        "command": "seq.run",
+        "title": "Run Workflow",
+        "category": "Seq",
+        "icon": "$(play)",
+        "enablement": "isWorkspaceTrusted"
+      },
+      {
+        "command": "seq.buildOnly",
+        "title": "Build Only",
+        "category": "Seq",
+        "enablement": "isWorkspaceTrusted"
+      },
+      {
+        "command": "seq.rebuild",
+        "title": "Rebuild",
+        "category": "Seq",
+        "enablement": "isWorkspaceTrusted"
+      },
+      {
+        "command": "seq.check",
+        "title": "Check",
+        "category": "Seq",
+        "enablement": "isWorkspaceTrusted"
+      },
+      {
+        "command": "seq.newProject",
+        "title": "New Project…",
+        "category": "Seq",
+        "enablement": "isWorkspaceTrusted"
+      },
+      {
+        "command": "seq.doctor",
+        "title": "Doctor",
+        "category": "Seq",
+        "enablement": "isWorkspaceTrusted"
+      },
+      {
+        "command": "seq.modelPull",
+        "title": "Pull Model",
+        "category": "Seq",
+        "enablement": "isWorkspaceTrusted"
+      },
+      {
+        "command": "seq.clean",
+        "title": "Clean",
+        "category": "Seq",
+        "enablement": "isWorkspaceTrusted"
+      },
+      {
+        "command": "seq.cleanAll",
+        "title": "Clean All",
+        "category": "Seq",
+        "enablement": "isWorkspaceTrusted"
+      },
+      {
+        "command": "seq.showGeneratedC",
+        "title": "Show Generated C",
+        "category": "Seq"
+      },
+      {
+        "command": "seq.showAssembly",
+        "title": "Show Assembly",
+        "category": "Seq"
+      },
+      {
+        "command": "seq.showPlan",
+        "title": "Show Latest Plan",
+        "category": "Seq"
+      },
+      {
+        "command": "seq.openLatestRun",
+        "title": "Open Latest Run",
+        "category": "Seq"
+      },
+      {
+        "command": "seq.compareAttempts",
+        "title": "Compare with Previous Attempt",
+        "category": "Seq"
+      },
+      {
+        "command": "seq.showSettings",
+        "title": "Show seqc Settings",
+        "category": "Seq",
+        "enablement": "isWorkspaceTrusted"
+      },
+      {
+        "command": "seq.refreshBuildView",
+        "title": "Refresh",
+        "category": "Seq",
+        "icon": "$(refresh)"
+      },
+      {
+        "command": "seq.revealInExplorer",
+        "title": "Reveal in Explorer",
+        "category": "Seq"
+      }
+    ],
+    "menus": {
+      "editor/title/run": [
+        {
+          "command": "seq.run",
+          "when": "resourceLangId == seq && isWorkspaceTrusted",
+          "group": "navigation"
+        }
+      ],
+      "view/title": [
+        {
+          "command": "seq.refreshBuildView",
+          "when": "view == seq.build",
+          "group": "navigation"
+        },
+        {
+          "command": "seq.clean",
+          "when": "view == seq.build",
+          "group": "1_clean@1"
+        },
+        {
+          "command": "seq.cleanAll",
+          "when": "view == seq.build",
+          "group": "1_clean@2"
+        }
+      ],
+      "view/item/context": [
+        {
+          "command": "seq.compareAttempts",
+          "when": "view == seq.build && viewItem == seq.attempt.comparable",
+          "group": "inline"
+        },
+        {
+          "command": "seq.compareAttempts",
+          "when": "view == seq.build && viewItem == seq.attempt.comparable",
+          "group": "1_compare"
+        },
+        {
+          "command": "seq.revealInExplorer",
+          "when": "view == seq.build && viewItem =~ /^seq\\.(file|dir|attempt)/",
+          "group": "2_reveal"
+        }
+      ],
+      "commandPalette": [
+        {
+          "command": "seq.refreshBuildView",
+          "when": "false"
+        },
+        {
+          "command": "seq.revealInExplorer",
+          "when": "false"
+        },
+        {
+          "command": "seq.compareAttempts",
+          "when": "false"
+        }
+      ]
+    },
+    "views": {
+      "explorer": [
+        {
+          "id": "seq.build",
+          "name": "Seq Build",
+          "when": "seq.hasProject"
+        }
+      ]
+    },
+    "taskDefinitions": [
+      {
+        "type": "seqc",
+        "required": [
+          "command"
+        ],
+        "properties": {
+          "command": {
+            "type": "string",
+            "enum": [
+              "run",
+              "build",
+              "rebuild",
+              "check",
+              "clean",
+              "cleanAll",
+              "doctor",
+              "modelPull"
+            ],
+            "description": "What seqc should do."
+          },
+          "project": {
+            "type": "string",
+            "description": "Project directory (the one that contains src/main.seq). Defaults to the workspace folder."
+          },
+          "args": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Extra arguments passed to seqc."
+          }
+        }
+      }
+    ],
+    "problemMatchers": [
+      {
+        "name": "seqc",
+        "owner": "seq",
+        "fileLocation": [
+          "autoDetect",
+          "${workspaceFolder}"
+        ],
+        "pattern": {
+          "regexp": "^(.+?):(\\d+):(\\d+): (error|warning)\\[(E\\d{4})\\]: (.*)$",
+          "file": 1,
+          "line": 2,
+          "column": 3,
+          "severity": 4,
+          "code": 5,
+          "message": 6
+        }
+      }
+    ],
+    "jsonValidation": [
+      {
+        "fileMatch": "**/output/temp/build.json",
+        "url": "./schemas/build.schema.json"
+      },
+      {
+        "fileMatch": "**/output/temp/runs/*/build-manifest.json",
+        "url": "./schemas/build.schema.json"
+      },
+      {
+        "fileMatch": "**/output/temp/runs/*/plan.json",
+        "url": "./schemas/plan.schema.json"
+      },
+      {
+        "fileMatch": "**/output/temp/runs/*/run-manifest.json",
+        "url": "./schemas/run-manifest.schema.json"
+      }
+    ],
+    "configuration": {
+      "title": "Seq",
+      "properties": {
+        "seq.seqcPath": {
+          "type": "string",
+          "default": "seqc",
+          "scope": "machine-overridable",
+          "description": "Path to the seqc executable. With seq.useWsl, this is the path inside WSL."
+        },
+        "seq.useWsl": {
+          "type": "boolean",
+          "default": false,
+          "scope": "machine-overridable",
+          "markdownDescription": "Windows only: run `seqc` inside the default WSL distribution instead of looking for a Windows executable. Not needed in a Remote – WSL window."
+        },
+        "seq.check.onSave": {
+          "type": "boolean",
+          "default": true,
+          "markdownDescription": "Run `seqc check` when a `.seq` file is opened or saved."
+        },
+        "seq.codeLens.enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show run, status, and generated-code lenses."
+        },
+        "seq.run.extraArgs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": [],
+          "markdownDescription": "Extra arguments passed to `seqc` when building or running, for example `[\"--set\", \"model.seed=7\"]`."
+        },
+        "seq.run.quiet": {
+          "type": "boolean",
+          "default": false,
+          "markdownDescription": "Pass `--quiet` to `seqc` when building or running."
+        },
+        "seq.trace": {
+          "type": "string",
+          "enum": [
+            "off",
+            "commands"
+          ],
+          "default": "off",
+          "description": "Log seqc invocations to the Seq output channel."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run typecheck && node esbuild.mjs --production",
+    "build": "node esbuild.mjs",
+    "watch": "node esbuild.mjs --watch",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint src tests",
+    "test": "npm run test:unit && npm run test:grammar",
+    "test:unit": "vitest run",
+    "test:grammar": "vscode-tmgrammar-snap \"tests/grammar/*.seq\"",
+    "test:integration": "npm run build && tsc -p tests/integration && vscode-test",
+    "package": "vsce package",
+    "publish": "vsce publish"
+  },
+  "devDependencies": {
+    "@types/mocha": "^10.0.10",
+    "@types/node": "^22.20.5",
+    "@types/vscode": "1.90.0",
+    "@vscode/test-cli": "^0.0.15",
+    "@vscode/test-electron": "^3.1.0",
+    "@vscode/vsce": "^4.0.0",
+    "esbuild": "^0.28.2",
+    "eslint": "^10.12.0",
+    "ovsx": "^1.2.0",
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.71.0",
+    "vitest": "^5.0.3",
+    "vscode-tmgrammar-test": "^0.1.3"
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Seq run manifest",
+  "description": "Written by seqc after the generated program ran.",
+  "type": "object",
+  "properties": {
+    "schema_version": { "type": "integer" },
+    "run_id": { "type": "string" },
+    "finished": { "type": "string", "description": "UTC timestamp." },
+    "cache_key": { "type": "string" },
+    "reused_cached_build": { "type": "boolean" },
+    "exit_code": { "type": "integer", "description": "0 when every step succeeded, 70 when a step failed." },
+    "signal": { "type": "integer" },
+    "seconds": { "type": "number" },
+    "status": {
+      "type": "string",
+      "description": "Final status of the run.",
+      "enum": [
+        "ok",
+        "step-failed",
+        "abnormal-end",
+        "invalid-outputs",
+        "publish-refused",
+        "isolation-failure",
+        "not-started"
+      ]
+    },
+    "steps": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "index": { "type": "integer", "minimum": 1 },
+          "name": { "type": "string" },
+          "status": { "type": "string" },
+          "code": { "type": "integer" },
+          "message": { "type": "string" }
+        }
+      }
+    },
+    "published": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "path": { "type": "string" },
+          "size": { "type": "integer" },
+          "sha256": { "type": "string" },
+          "kind": { "type": "string" },
+          "final": { "type": "boolean" }
+        }
+      }
+    },
+    "undeclared": {
+      "type": "array",
+      "description": "Files the program wrote that the plan did not declare. They stay in staging/.",
+      "items": { "type": "string" }
+    }
+  }
+}

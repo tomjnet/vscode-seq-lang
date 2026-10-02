@@ -1,0 +1,98 @@
+{
+  "schema_version": 1,
+  "cache_key": "f5a7fec96892f5aa666ad8bde88a06f14a76785a386b98150d4b1151b28cd55d",
+  "created": "2026-10-02T14:02:09Z",
+  "run_id": "20261002T140203.123Z-a1b2c3",
+  "workflow": "numbers",
+  "seqc_version": "0.1.0",
+  "seqc_commit": "28ef65a",
+  "grammar_version": 1,
+  "prompt_version": 1,
+  "source_sha256": "35a948021c31644281922586204e4048439eefdccab2c83d62ee95a67a66c98a",
+  "inputs": [],
+  "model": {
+    "adapter": "fake"
+  },
+  "generation": {
+    "seed": 1,
+    "max_output_tokens": 4096,
+    "context_tokens": 32768
+  },
+  "toolchain": {
+    "cc": "/usr/bin/gcc",
+    "cc_version": "gcc 13.3.0",
+    "cxx": "/usr/bin/g++",
+    "cxx_version": "g++ 13.3.0"
+  },
+  "attempts": {
+    "program": 2,
+    "tests": 1,
+    "limit": 3
+  },
+  "warnings": "",
+  "plan": {
+    "schema_version": 1,
+    "steps": [
+      {
+        "index": 1,
+        "name": "make_numbers",
+        "summary": "Writes numbers.txt: the integers 1 to 5 in decimal, one per line.",
+        "reads": [],
+        "writes": [
+          "numbers.txt"
+        ]
+      },
+      {
+        "index": 2,
+        "name": "add_numbers",
+        "summary": "Reads numbers.txt, writes the sum as one decimal line to total.txt, and prints \"sum=<value>\".",
+        "reads": [
+          "numbers.txt"
+        ],
+        "writes": [
+          "total.txt"
+        ]
+      }
+    ],
+    "outputs": [
+      {
+        "path": "numbers.txt",
+        "kind": "text",
+        "final": false
+      },
+      {
+        "path": "total.txt",
+        "kind": "text",
+        "final": true
+      }
+    ],
+    "dependencies": [
+      "libc",
+      "seqrt"
+    ]
+  },
+  "tests": {
+    "status": "completed",
+    "detail": "",
+    "exit_code": 0,
+    "passed": 2,
+    "failed": 0,
+    "cases": [
+      {
+        "name": "Numbers.WritesFiveLines",
+        "passed": true
+      },
+      {
+        "name": "Numbers.WritesTheSum",
+        "passed": true
+      }
+    ]
+  },
+  "artifacts": {
+    "source": "d57a09e661a699d25faf15317469a646e95118499a2ea41ce2922a6c0bd9bbf8",
+    "assembly": "8658f2907afb1d7337ddaff1b014507b5efe13ae918b69d2da0cfc22b3f8b1f7",
+    "binary": "51a1f05af85e342e3c849b47d387086476282d5f50dc240c19216d6edfb1eb5a",
+    "test_source": "612bc1fdfc0240c39333fe2d9f364b416a572fd17e359f271e94f0fde00c790c",
+    "test_binary": "f133ed5b80ceae7132b59408662ced80eb14721c385ca2d24b40a33f7869691b"
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Seq workflow plan",
+  "description": "The plan a model returned and seqc accepted for one workflow.",
+  "type": "object",
+  "required": ["steps", "outputs"],
+  "properties": {
+    "schema_version": { "type": "integer" },
+    "steps": {
+      "type": "array",
+      "description": "One entry per step, in source order.",
+      "items": {
+        "type": "object",
+        "required": ["index", "name"],
+        "properties": {
+          "index": { "type": "integer", "minimum": 1, "description": "1-based position; the C function is seq_step_<index>." },
+          "name": { "type": "string" },
+          "summary": { "type": "string" },
+          "reads": { "type": "array", "items": { "type": "string" } },
+          "writes": { "type": "array", "items": { "type": "string" } }
+        }
+      }
+    },
+    "outputs": {
+      "type": "array",
+      "description": "Files the program declares it will produce.",
+      "items": {
+        "type": "object",
+        "required": ["path"],
+        "properties": {
+          "path": { "type": "string", "description": "Relative to output/." },
+          "kind": { "type": "string" },
+          "final": { "type": "boolean", "description": "Whether this is a result rather than an intermediate file." }
+        }
+      }
+    },
+    "dependencies": {
+      "type": "array",
+      "description": "Libraries the plan needs. Only libc, libm, and seqrt are accepted.",
+      "items": { "type": "string" }
+    }
+  }
+}

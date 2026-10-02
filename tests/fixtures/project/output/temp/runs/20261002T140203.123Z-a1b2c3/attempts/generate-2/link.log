@@ -1,0 +1,1 @@
+gcc numbers.s -o numbers.bin -static -lseqrt -lm

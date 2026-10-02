@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "run_id": "20261002T140203.123Z-a1b2c3",
+  "finished": "2026-10-02T14:02:10Z",
+  "cache_key": "f5a7fec96892f5aa666ad8bde88a06f14a76785a386b98150d4b1151b28cd55d",
+  "reused_cached_build": false,
+  "exit_code": 0,
+  "signal": 0,
+  "seconds": 0.012,
+  "steps": [
+    {
+      "index": 1,
+      "name": "make_numbers",
+      "status": "ok",
+      "code": 0,
+      "message": ""
+    },
+    {
+      "index": 2,
+      "name": "add_numbers",
+      "status": "ok",
+      "code": 0,
+      "message": ""
+    }
+  ],
+  "undeclared": [],
+  "published": [
+    {
+      "path": "numbers.txt",
+      "size": 10,
+      "sha256": "f6b49467f595b1a44e442c198b3df4d221e88efcaabc26254f8e0ad4f79b6242",
+      "kind": "text",
+      "final": false
+    },
+    {
+      "path": "total.txt",
+      "size": 3,
+      "sha256": "238903180cc104ec2c5d8b3f20c5bc61b389ec0a967df8cc208cdc7cd454174f",
+      "kind": "text",
+      "final": true
+    }
+  ],
+  "status": "ok"
+}

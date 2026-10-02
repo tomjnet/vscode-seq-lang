@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "run_id": "20261001T090000.000Z-0f0f0f",
+  "finished": "2026-10-01T09:00:01Z",
+  "cache_key": "dd31d7bd14d3b1b5570679c64e85738d15e42f5b90f2d77c933afb43cb2d424b",
+  "reused_cached_build": true,
+  "exit_code": 70,
+  "signal": 0,
+  "seconds": 0.004,
+  "steps": [
+    {
+      "index": 1,
+      "name": "make_numbers",
+      "status": "ok",
+      "code": 0,
+      "message": ""
+    },
+    {
+      "index": 2,
+      "name": "add_numbers",
+      "status": "failed",
+      "code": 1,
+      "message": "cannot open numbers.txt"
+    }
+  ],
+  "status": "step-failed"
+}

@@ -1,0 +1,5 @@
+begin 1 make_numbers
+ok 1 make_numbers
+begin 2 add_numbers
+message 2 cannot open numbers.txt
+fail 2 add_numbers 1

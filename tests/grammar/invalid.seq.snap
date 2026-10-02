@@ -1,0 +1,65 @@
+>model = "https://huggingface.co/a/b"
+#^^^^^ source.seq support.function.builtin.seq
+#     ^^^ source.seq
+#        ^ source.seq string.quoted.double.seq punctuation.definition.string.begin.seq
+#         ^^^^^^^^^^^^^^^^^^^^^^^^^^ source.seq string.quoted.double.seq markup.underline.link.seq
+#                                   ^ source.seq string.quoted.double.seq punctuation.definition.string.end.seq
+>backend.Rust()
+#^^^^^^^ source.seq support.class.seq
+#       ^ source.seq punctuation.accessor.seq
+#        ^^^^ source.seq entity.name.type.backend.seq
+#            ^ source.seq punctuation.section.parens.begin.seq
+#             ^ source.seq punctuation.section.parens.end.seq
+>name = "bad name"
+#^^^^ source.seq variable.language.seq
+#    ^ source.seq
+#     ^ source.seq keyword.operator.assignment.seq
+#      ^ source.seq
+#       ^ source.seq string.quoted.double.seq punctuation.definition.string.begin.seq
+#        ^^^^^^^^ source.seq string.quoted.double.seq
+#                ^ source.seq string.quoted.double.seq punctuation.definition.string.end.seq
+>
+>step ask():
+#^^^^ source.seq storage.type.function.seq
+#    ^ source.seq
+#     ^^^ source.seq entity.name.function.seq
+#        ^ source.seq punctuation.section.parens.begin.seq
+#         ^ source.seq punctuation.section.parens.end.seq
+#          ^ source.seq punctuation.separator.seq
+>	ask("tab")
+#^ source.seq invalid.illegal.tab.seq
+# ^^^ source.seq support.function.builtin.seq
+#    ^ source.seq punctuation.section.parens.begin.seq
+#     ^ source.seq string.quoted.double.seq punctuation.definition.string.begin.seq
+#      ^^^ source.seq string.quoted.double.seq
+#         ^ source.seq string.quoted.double.seq punctuation.definition.string.end.seq
+#          ^ source.seq punctuation.section.parens.end.seq
+>    ask "no parentheses" # c
+#^^^^ source.seq
+#    ^^^ source.seq support.function.builtin.seq
+#       ^ source.seq
+#        ^ source.seq string.quoted.double.seq punctuation.definition.string.begin.seq
+#         ^^^^^^^^^^^^^^ source.seq string.quoted.double.seq
+#                       ^ source.seq string.quoted.double.seq punctuation.definition.string.end.seq
+#                        ^ source.seq
+#                         ^ source.seq comment.line.number-sign.seq punctuation.definition.comment.seq
+#                          ^^ source.seq comment.line.number-sign.seq
+>    ask("bad \q escape \n ok")
+#^^^^ source.seq
+#    ^^^ source.seq support.function.builtin.seq
+#       ^ source.seq punctuation.section.parens.begin.seq
+#        ^ source.seq string.quoted.double.seq punctuation.definition.string.begin.seq
+#         ^^^^ source.seq string.quoted.double.seq
+#             ^^ source.seq string.quoted.double.seq invalid.illegal.unknown-escape.seq
+#               ^^^^^^^^ source.seq string.quoted.double.seq
+#                       ^^ source.seq string.quoted.double.seq constant.character.escape.seq
+#                         ^^^ source.seq string.quoted.double.seq
+#                            ^ source.seq string.quoted.double.seq punctuation.definition.string.end.seq
+#                             ^ source.seq punctuation.section.parens.end.seq
+>    ask("unterminated
+#^^^^ source.seq
+#    ^^^ source.seq support.function.builtin.seq
+#       ^ source.seq punctuation.section.parens.begin.seq
+#        ^ source.seq string.quoted.double.seq punctuation.definition.string.begin.seq
+#         ^^^^^^^^^^^^ source.seq string.quoted.double.seq
+>

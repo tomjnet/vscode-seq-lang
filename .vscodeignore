@@ -1,0 +1,12 @@
+**
+!package.json
+!README.md
+!CHANGELOG.md
+!LICENSE
+!language-configuration.json
+!dist/extension.js
+!syntaxes/**
+!snippets/**
+!schemas/**
+!images/icon.png
+!images/seq-file.svg

@@ -1,0 +1,9 @@
+model = "https://huggingface.co/a/b"
+backend.Rust()
+name = "bad name"
+
+step ask():
+	ask("tab")
+    ask "no parentheses" # c
+    ask("bad \q escape \n ok")
+    ask("unterminated

@@ -1,0 +1,120 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "Seq",
+  "scopeName": "source.seq",
+  "patterns": [
+    { "include": "#comment" },
+    { "include": "#tab" },
+    { "include": "#model" },
+    { "include": "#backend" },
+    { "include": "#name" },
+    { "include": "#step" },
+    { "include": "#ask" },
+    { "include": "#string" },
+    { "include": "#punctuation" }
+  ],
+  "repository": {
+    "comment": {
+      "name": "comment.line.number-sign.seq",
+      "begin": "#",
+      "beginCaptures": {
+        "0": { "name": "punctuation.definition.comment.seq" }
+      },
+      "end": "$"
+    },
+    "tab": {
+      "name": "invalid.illegal.tab.seq",
+      "match": "\\t+"
+    },
+    "model": {
+      "begin": "^(model)\\b",
+      "beginCaptures": {
+        "1": { "name": "support.function.builtin.seq" }
+      },
+      "end": "(?=#)|$",
+      "patterns": [
+        { "include": "#url-string" },
+        { "include": "#string" },
+        { "include": "#punctuation" },
+        { "include": "#tab" }
+      ]
+    },
+    "backend": {
+      "match": "^(backend)\\b(?:\\s*(\\.)\\s*([A-Za-z_][A-Za-z0-9_]*))?",
+      "captures": {
+        "1": { "name": "support.class.seq" },
+        "2": { "name": "punctuation.accessor.seq" },
+        "3": { "name": "entity.name.type.backend.seq" }
+      }
+    },
+    "name": {
+      "match": "^(name)\\b(?:\\s*(=))?",
+      "captures": {
+        "1": { "name": "variable.language.seq" },
+        "2": { "name": "keyword.operator.assignment.seq" }
+      }
+    },
+    "step": {
+      "match": "^(step)\\b(?:\\s+([A-Za-z_][A-Za-z0-9_]*))?",
+      "captures": {
+        "1": { "name": "storage.type.function.seq" },
+        "2": { "name": "entity.name.function.seq" }
+      }
+    },
+    "ask": {
+      "match": "\\b(ask)\\b",
+      "captures": {
+        "1": { "name": "support.function.builtin.seq" }
+      }
+    },
+    "url-string": {
+      "name": "string.quoted.double.seq",
+      "begin": "\"(?=https?://)",
+      "beginCaptures": {
+        "0": { "name": "punctuation.definition.string.begin.seq" }
+      },
+      "end": "(\")|$",
+      "endCaptures": {
+        "1": { "name": "punctuation.definition.string.end.seq" }
+      },
+      "patterns": [
+        {
+          "name": "markup.underline.link.seq",
+          "match": "https?://[^\"\\\\\\s]+"
+        },
+        { "include": "#escape" }
+      ]
+    },
+    "string": {
+      "name": "string.quoted.double.seq",
+      "begin": "\"",
+      "beginCaptures": {
+        "0": { "name": "punctuation.definition.string.begin.seq" }
+      },
+      "end": "(\")|$",
+      "endCaptures": {
+        "1": { "name": "punctuation.definition.string.end.seq" }
+      },
+      "patterns": [{ "include": "#escape" }]
+    },
+    "escape": {
+      "patterns": [
+        {
+          "name": "constant.character.escape.seq",
+          "match": "\\\\[\"\\\\nt]"
+        },
+        {
+          "name": "invalid.illegal.unknown-escape.seq",
+          "match": "\\\\."
+        }
+      ]
+    },
+    "punctuation": {
+      "patterns": [
+        { "name": "punctuation.section.parens.begin.seq", "match": "\\(" },
+        { "name": "punctuation.section.parens.end.seq", "match": "\\)" },
+        { "name": "punctuation.separator.seq", "match": "[:,]" }
+      ]
+    }
+  }
+}

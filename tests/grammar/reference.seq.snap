@@ -1,0 +1,82 @@
+># Header declarations may come in any order.
+#^ source.seq comment.line.number-sign.seq punctuation.definition.comment.seq
+# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.seq comment.line.number-sign.seq
+>name = "notes_demo-1"
+#^^^^ source.seq variable.language.seq
+#    ^ source.seq
+#     ^ source.seq keyword.operator.assignment.seq
+#      ^ source.seq
+#       ^ source.seq string.quoted.double.seq punctuation.definition.string.begin.seq
+#        ^^^^^^^^^^^^ source.seq string.quoted.double.seq
+#                    ^ source.seq string.quoted.double.seq punctuation.definition.string.end.seq
+>backend.C()   # the only backend in v0.1
+#^^^^^^^ source.seq support.class.seq
+#       ^ source.seq punctuation.accessor.seq
+#        ^ source.seq entity.name.type.backend.seq
+#         ^ source.seq punctuation.section.parens.begin.seq
+#          ^ source.seq punctuation.section.parens.end.seq
+#           ^^^ source.seq
+#              ^ source.seq comment.line.number-sign.seq punctuation.definition.comment.seq
+#               ^^^^^^^^^^^^^^^^^^^^^^^^^ source.seq comment.line.number-sign.seq
+>model("https://huggingface.co/Qwen/Qwen2.5-Coder-1.5B-Instruct/tree/main")
+#^^^^^ source.seq support.function.builtin.seq
+#     ^ source.seq punctuation.section.parens.begin.seq
+#      ^ source.seq string.quoted.double.seq punctuation.definition.string.begin.seq
+#       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.seq string.quoted.double.seq markup.underline.link.seq
+#                                                                        ^ source.seq string.quoted.double.seq punctuation.definition.string.end.seq
+#                                                                         ^ source.seq punctuation.section.parens.end.seq
+>
+>step greet():
+#^^^^ source.seq storage.type.function.seq
+#    ^ source.seq
+#     ^^^^^ source.seq entity.name.function.seq
+#          ^ source.seq punctuation.section.parens.begin.seq
+#           ^ source.seq punctuation.section.parens.end.seq
+#            ^ source.seq punctuation.separator.seq
+>    # Escapes: quote, backslash, newline, tab.
+#^^^^ source.seq
+#    ^ source.seq comment.line.number-sign.seq punctuation.definition.comment.seq
+#     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.seq comment.line.number-sign.seq
+>    ask("print \"hello\" and a backslash \\ then\na second line\twith a tab")
+#^^^^ source.seq
+#    ^^^ source.seq support.function.builtin.seq
+#       ^ source.seq punctuation.section.parens.begin.seq
+#        ^ source.seq string.quoted.double.seq punctuation.definition.string.begin.seq
+#         ^^^^^^ source.seq string.quoted.double.seq
+#               ^^ source.seq string.quoted.double.seq constant.character.escape.seq
+#                 ^^^^^ source.seq string.quoted.double.seq
+#                      ^^ source.seq string.quoted.double.seq constant.character.escape.seq
+#                        ^^^^^^^^^^^^^^^^^ source.seq string.quoted.double.seq
+#                                         ^^ source.seq string.quoted.double.seq constant.character.escape.seq
+#                                           ^^^^^ source.seq string.quoted.double.seq
+#                                                ^^ source.seq string.quoted.double.seq constant.character.escape.seq
+#                                                  ^^^^^^^^^^^^^ source.seq string.quoted.double.seq
+#                                                               ^^ source.seq string.quoted.double.seq constant.character.escape.seq
+#                                                                 ^^^^^^^^^^ source.seq string.quoted.double.seq
+#                                                                           ^ source.seq string.quoted.double.seq punctuation.definition.string.end.seq
+#                                                                            ^ source.seq punctuation.section.parens.end.seq
+>    ask("a # inside a string is not a comment; café and 日本語 are fine")
+#^^^^ source.seq
+#    ^^^ source.seq support.function.builtin.seq
+#       ^ source.seq punctuation.section.parens.begin.seq
+#        ^ source.seq string.quoted.double.seq punctuation.definition.string.begin.seq
+#         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.seq string.quoted.double.seq
+#                                                                    ^ source.seq string.quoted.double.seq punctuation.definition.string.end.seq
+#                                                                     ^ source.seq punctuation.section.parens.end.seq
+>
+>step finish():
+#^^^^ source.seq storage.type.function.seq
+#    ^ source.seq
+#     ^^^^^^ source.seq entity.name.function.seq
+#           ^ source.seq punctuation.section.parens.begin.seq
+#            ^ source.seq punctuation.section.parens.end.seq
+#             ^ source.seq punctuation.separator.seq
+>    ask("print done")
+#^^^^ source.seq
+#    ^^^ source.seq support.function.builtin.seq
+#       ^ source.seq punctuation.section.parens.begin.seq
+#        ^ source.seq string.quoted.double.seq punctuation.definition.string.begin.seq
+#         ^^^^^^^^^^ source.seq string.quoted.double.seq
+#                   ^ source.seq string.quoted.double.seq punctuation.definition.string.end.seq
+#                    ^ source.seq punctuation.section.parens.end.seq
+>

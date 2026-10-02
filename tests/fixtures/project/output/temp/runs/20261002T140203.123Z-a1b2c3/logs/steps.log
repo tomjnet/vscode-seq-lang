@@ -1,0 +1,4 @@
+begin 1 make_numbers
+ok 1 make_numbers
+begin 2 add_numbers
+ok 2 add_numbers

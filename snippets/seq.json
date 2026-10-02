@@ -1,0 +1,35 @@
+{
+  "Seq workflow": {
+    "prefix": ["workflow", "seq"],
+    "description": "A complete Seq workflow: header declarations and one step",
+    "body": [
+      "model(\"${1:https://huggingface.co/Qwen/Qwen2.5-Coder-1.5B-Instruct}\")",
+      "backend.C()",
+      "name = \"${2:${TM_DIRECTORY/.*[\\\\/\\\\\\\\]([^\\\\/\\\\\\\\]+)[\\\\/\\\\\\\\]src$/$1/}}\"",
+      "",
+      "step ${3:step1}():",
+      "    ask(\"${4:print Hello from Seq}\")",
+      "$0"
+    ]
+  },
+  "Header declarations": {
+    "prefix": "header",
+    "description": "The three required header declarations",
+    "body": [
+      "model(\"${1:https://huggingface.co/Qwen/Qwen2.5-Coder-1.5B-Instruct}\")",
+      "backend.C()",
+      "name = \"${2:name}\"",
+      "$0"
+    ]
+  },
+  "Step": {
+    "prefix": "step",
+    "description": "A step with one request",
+    "body": ["step ${1:name}():", "    ask(\"${2:request}\")", "$0"]
+  },
+  "Ask": {
+    "prefix": "ask",
+    "description": "A request in natural language",
+    "body": ["ask(\"${1:request}\")"]
+  }
+}

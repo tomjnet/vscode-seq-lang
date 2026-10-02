@@ -1,0 +1,63 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Seq build manifest",
+  "description": "Written by seqc when a build is accepted. Its presence marks a complete artifact set.",
+  "type": "object",
+  "properties": {
+    "schema_version": { "type": "integer" },
+    "cache_key": { "type": "string", "description": "SHA-256 of everything the build depends on." },
+    "created": { "type": "string", "description": "UTC timestamp of acceptance." },
+    "run_id": { "type": "string", "description": "The run that produced this build." },
+    "workflow": { "type": "string", "description": "The workflow name; also the basename of the artifacts." },
+    "seqc_version": { "type": "string" },
+    "seqc_commit": { "type": "string" },
+    "grammar_version": {},
+    "prompt_version": {},
+    "source_sha256": { "type": "string", "description": "SHA-256 of the normalized source text." },
+    "inputs": {},
+    "model": {},
+    "generation": {},
+    "toolchain": {},
+    "attempts": {
+      "type": "object",
+      "properties": {
+        "program": { "type": "integer", "description": "Attempts used for the program (1 = first generation accepted)." },
+        "tests": { "type": "integer" },
+        "limit": { "type": "integer" }
+      }
+    },
+    "warnings": { "type": "string", "description": "Compiler warnings of the accepted program." },
+    "plan": { "$ref": "plan.schema.json" },
+    "tests": {
+      "type": "object",
+      "properties": {
+        "status": { "type": "string", "enum": ["completed", "abnormal"] },
+        "detail": { "type": "string" },
+        "exit_code": { "type": "integer" },
+        "passed": { "type": "integer" },
+        "failed": { "type": "integer" },
+        "cases": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": { "type": "string" },
+              "passed": { "type": "boolean" }
+            }
+          }
+        }
+      }
+    },
+    "artifacts": {
+      "type": "object",
+      "description": "SHA-256 of each artifact.",
+      "properties": {
+        "source": { "type": "string" },
+        "assembly": { "type": "string" },
+        "binary": { "type": "string" },
+        "test_source": { "type": "string" },
+        "test_binary": { "type": "string" }
+      }
+    }
+  }
+}

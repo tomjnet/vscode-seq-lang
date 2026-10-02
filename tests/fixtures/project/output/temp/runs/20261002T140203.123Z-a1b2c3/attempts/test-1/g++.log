@@ -1,0 +1,1 @@
+g++ -std=c++17 numbers_test.cc numbers.o -o numbers_test.bin
