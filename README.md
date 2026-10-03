@@ -1,6 +1,18 @@
 # Seq Language for VS Code
 
-Syntax, diagnostics, and build inspection for the [Seq programming language](https://tomjnet.github.io/seq-lang/),ordered workflows written as plain-language requests and compiled by `seqc` into native executables.
+[![Visual Studio Marketplace](https://img.shields.io/visual-studio-marketplace/v/tomjnet.vscode-seq-lang?label=Marketplace&logo=visualstudiocode)](https://marketplace.visualstudio.com/items?itemName=tomjnet.vscode-seq-lang)
+[![Installs](https://img.shields.io/visual-studio-marketplace/i/tomjnet.vscode-seq-lang)](https://marketplace.visualstudio.com/items?itemName=tomjnet.vscode-seq-lang)
+[![CI](https://github.com/tomjnet/vscode-seq-lang/actions/workflows/ci.yml/badge.svg)](https://github.com/tomjnet/vscode-seq-lang/actions/workflows/ci.yml)
+
+Syntax, diagnostics, and build inspection for the [Seq programming language](https://tomjnet.github.io/seq-lang/), ordered workflows written as plain-language requests and compiled by `seqc` into native executables.
+
+## Install
+
+From the [Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=tomjnet.vscode-seq-lang), or from a terminal:
+
+```bash
+code --install-extension tomjnet.vscode-seq-lang
+```
 
 ```seq
 model("https://huggingface.co/Qwen/Qwen2.5-Coder-1.5B-Instruct")
@@ -33,7 +45,7 @@ step step2():
 
 **Running**
 
-- `Seq: Run Workflow`, `Build Only`, `Rebuild`, `Check`, `Doctor`, `Pull Model`, `Clean`,each runs `seqc` in a task terminal
+- `Seq: Run Workflow`, `Build Only`, `Rebuild`, `Check`, `Doctor`, `Pull Model`, `Clean`, each runs `seqc` in a task terminal
 - Run button in the editor title, and CodeLens above the workflow: Run · Build only · Check · Rebuild · build status
 - The status bar follows the build stages (`plan`, `generate`, `compile`, `test`, `run`)
 - A failed build offers the next step: compare repair attempts, run `seqc doctor`, pull the model, retry with `--force`
